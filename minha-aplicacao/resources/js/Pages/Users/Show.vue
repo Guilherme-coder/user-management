@@ -62,5 +62,5 @@ const submit = () => {
             </div>
         </div>
 
-        <AuthenticatedLayout>
+        </AuthenticatedLayout>
 </template>

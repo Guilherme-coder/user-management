@@ -12,7 +12,7 @@ use Inertia\Response;
 class ProfileController extends Controller
 {
 
-    public function syncUsers(Request $request, Profile $profile)
+    public function syncUsers(Request $request, Profile $profile): RedirectResponse
     {
         $validated = $request->validate([
             'users' => ['array'],
@@ -30,7 +30,7 @@ class ProfileController extends Controller
         return Inertia::render('Profiles/Index', ['profiles' => $profiles]);
     }
 
-    public function show(Profile $profile)
+    public function show(Profile $profile): Response
     {
         return Inertia::render('Profiles/Show', [
             'profile' => $profile,
@@ -89,6 +89,10 @@ class ProfileController extends Controller
      */
     public function destroy(Profile $profile): RedirectResponse
     {
+        if (in_array(strtolower($profile->profile), ['administrador', 'usuario'])) {
+            return redirect()->route('profiles.index')->with('error', 'Este perfil não pode ser excluído.');
+        }
+
         $profile->delete();
         return redirect()->route('profiles.index')->with('success', 'Perfil deletado com sucesso.');
     }
