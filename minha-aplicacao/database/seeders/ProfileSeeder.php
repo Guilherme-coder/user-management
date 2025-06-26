@@ -2,16 +2,14 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Profile;
 use Illuminate\Database\Seeder;
 
 class ProfileSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
-    public function run()
+    public function run(): void
     {
-        \App\Models\Profile::firstOrCreate(['profile' => 'Admin']);
+        Profile::firstOrCreate(['profile' => 'Administrador']);
+        Profile::firstOrCreate(['profile' => 'Usuario']);
     }
 }

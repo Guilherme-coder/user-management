@@ -55,7 +55,7 @@ Permissão	Perfil Administrador
 
 | Tipo      | Dado                 |
 |-----------|----------------------|
-| Email     | admin@teste.com      |
+| Email     | admin@claro.com      |
 | Senha     | password             |
 | Permissão | Perfil Administrador |
 
