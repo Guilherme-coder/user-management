@@ -2,9 +2,10 @@
 import { router } from '@inertiajs/vue3'
 import { Head, Link } from '@inertiajs/vue3'
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import Pagination from "@/Components/Pagination.vue";
 
 defineProps({
-    profiles: Array
+    profiles: Object
 })
 
 const confirmDelete = (id) => {
@@ -37,7 +38,7 @@ const confirmDelete = (id) => {
                     </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-100">
-                    <tr v-for="profile in profiles" :key="profile.id">
+                    <tr v-for="profile in profiles.data" :key="profile.id">
                         <td class="px-6 py-4 text-sm text-gray-800">{{ profile.id }}</td>
                         <td class="px-6 py-4 text-sm text-gray-800">{{ profile.profile }}</td>
                         <td class="px-6 py-4 text-right text-sm">
@@ -51,6 +52,7 @@ const confirmDelete = (id) => {
                     </tr>
                     </tbody>
                 </table>
+                <Pagination :links="profiles.links" />
             </div>
         </div>
 

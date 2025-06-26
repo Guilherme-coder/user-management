@@ -32,7 +32,7 @@ class ProfileController extends Controller
      */
     public function index(): Response
     {
-        $profiles = Profile::all();
+        $profiles = Profile::select('id', 'profile')->paginate(10);
         return Inertia::render('Profiles/Index', ['profiles' => $profiles]);
     }
 

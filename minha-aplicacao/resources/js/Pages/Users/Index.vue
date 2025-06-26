@@ -1,9 +1,10 @@
 <script setup>
 import {Head, Link, router} from '@inertiajs/vue3'
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
+import Pagination from "@/Components/Pagination.vue";
 
 defineProps({
-    users: Array
+    users: Object
 })
 
 const confirmDelete = (id) => {
@@ -40,7 +41,7 @@ const confirmDelete = (id) => {
                     </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-100">
-                    <tr v-for="user in users" :key="user.id">
+                    <tr v-for="user in users.data" :key="user.id">
                         <td class="px-6 py-4 text-sm text-gray-800">{{ user.id }}</td>
                         <td class="px-6 py-4 text-sm text-gray-800">{{ user.name }}</td>
                         <td class="px-6 py-4 text-sm text-gray-800">{{ user.email }}</td>
@@ -55,6 +56,7 @@ const confirmDelete = (id) => {
                     </tr>
                     </tbody>
                 </table>
+                <Pagination :links="users.links" />
             </div>
         </div>
 
