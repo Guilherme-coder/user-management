@@ -15,7 +15,7 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!auth()->check() || !auth()->user()->hasProfile('Administrador')) {
+        if (!auth()->check() || !auth()->user()->isAdmin()) {
             abort(403);
         }
 

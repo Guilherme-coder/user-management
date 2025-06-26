@@ -38,11 +38,6 @@ class User extends Authenticatable
         return $this->belongsToMany(Profile::class);
     }
 
-    public function hasProfile(string $profile): bool
-    {
-        return $this->profiles()->where('profile', $profile)->exists();
-    }
-
     public function isAdmin(): bool
     {
         return $this->profiles()->where('profile', 'Administrador')->exists();

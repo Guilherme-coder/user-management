@@ -1,10 +1,16 @@
 <script setup>
-import { Head, Link } from '@inertiajs/vue3'
+import {Head, Link, router} from '@inertiajs/vue3'
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 
 defineProps({
     users: Array
 })
+
+const confirmDelete = (id) => {
+    if (confirm('Deseja realmente excluir este usuário?')) {
+        router.delete(`/users/${id}`)
+    }
+}
 </script>
 
 <template>
@@ -40,7 +46,8 @@ defineProps({
                         <td class="px-6 py-4 text-sm text-gray-800">{{ user.email }}</td>
                         <td class="px-6 py-4 text-right text-sm">
                             <Link :href="`/users/${user.id}`" class="text-indigo-600 hover:underline mr-4">Ver</Link>
-                            <Link :href="`/users/${user.id}/edit`" class="text-blue-600 hover:underline">Editar</Link>
+                            <Link :href="`/users/${user.id}/edit`" class="text-blue-600 hover:underline mr-4">Editar</Link>
+                            <button @click="confirmDelete(user.id)" class="text-red-600 hover:underline">Excluir</button>
                         </td>
                     </tr>
                     <tr v-if="users.length === 0">

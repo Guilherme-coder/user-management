@@ -21,7 +21,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware(['auth', IsAdmin::class])->group(function () {
-    Route::resource('users', UserController::class)->only(['index', 'create', 'store', 'edit', 'update', 'show']);
+    Route::resource('users', UserController::class);
     Route::post('users/{user}/profiles', [UserController::class, 'syncProfiles'])->name('users.syncProfiles');
 });
 

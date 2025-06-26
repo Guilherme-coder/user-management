@@ -86,5 +86,20 @@ class UserController extends Controller
             'attachedProfileIds' => $user->profiles()->pluck('id')->toArray(),
         ]);
     }
+
+    /**
+     * Delete a user.
+     */
+    public function destroy(User $user): RedirectResponse
+    {
+        if ($user->isAdmin()) {
+            return redirect()
+                ->route('users.index')
+                ->with('error', 'Não é permitido excluir um usuário com perfil Administrador.');
+        }
+
+        $user->delete();
+        return redirect()->route('users.index')->with('success', 'Usuario deletado com sucesso.');
+    }
 }
 
