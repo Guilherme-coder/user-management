@@ -33,6 +33,17 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function profiles()
+    {
+        return $this->belongsToMany(Profile::class);
+    }
+
+    public function hasProfile(string $profile): bool
+    {
+        return $this->profiles()->where('profile', $profile)->exists();
+    }
+
+
     /**
      * Get the attributes that should be cast.
      *

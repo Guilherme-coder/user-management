@@ -2,17 +2,37 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Profile;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 use Inertia\Response;
 
 class ProfileController extends Controller
 {
+    public function index(): Response
+    {
+        $profiles = Profile::all();
+        return Inertia::render('Profiles/Index', ['profiles' => $profiles]);
+    }
+
+    public function create(): Response
+    {
+        return Inertia::render('Profiles/Create');
+    }
+
+    public function store(Request $request): RedirectResponse
+    {
+        $validated = $request->validate([
+            'profile' => ['required', 'string', 'max:255'],
+        ]);
+
+        Profile::create($validated);
+
+        return redirect()->route('profiles.index')->with('success', 'Perfil criado com sucesso.');
+    }
+
     /**
      * Display the user's profile form.
      */
@@ -27,37 +47,23 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(Request $request, Profile $profile): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $validated = $request->validate([
+            'profile' => ['required', 'string', 'max:255'],
+        ]);
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
-        }
+        $profile->update($validated);
 
-        $request->user()->save();
-
-        return Redirect::route('profile.edit');
+        return redirect()->route('profiles.index')->with('success', 'Perfil atualizado com sucesso.');
     }
 
     /**
      * Delete the user's account.
      */
-    public function destroy(Request $request): RedirectResponse
+    public function destroy(Profile $profile): RedirectResponse
     {
-        $request->validate([
-            'password' => ['required', 'current_password'],
-        ]);
-
-        $user = $request->user();
-
-        Auth::logout();
-
-        $user->delete();
-
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-
-        return Redirect::to('/');
+        $profile->delete();
+        return redirect()->route('profiles.index')->with('success', 'Perfil deletado com sucesso.');
     }
 }

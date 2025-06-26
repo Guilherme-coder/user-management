@@ -17,7 +17,6 @@ defineProps({
 
 <template>
     <Head title="Profile" />
-
     <AuthenticatedLayout>
         <template #header>
             <h2

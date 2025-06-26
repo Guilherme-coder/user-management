@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Profile;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,11 +13,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        $adminProfile = Profile::firstOrCreate(['profile' => 'Administrador']);
+        $userProfile = Profile::firstOrCreate(['profile' => 'Usuario']);
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        $adminUser = User::factory()->create([
+            'name' => 'Admin',
+            'email' => 'admin@claro.com',
         ]);
+        $adminUser->profiles()->attach($adminProfile->id);
+
+        $users = User::factory(10)->create();
+        foreach ($users as $user) {
+            $user->profiles()->attach($userProfile->id);
+        }
     }
 }
