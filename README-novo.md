@@ -69,6 +69,8 @@ Permissão	Perfil Administrador
 - app/Http/Requests/Profile: Form Request classes do Profile
 - app/Http/Controllers/UserController: controller que gerencia os usuários e seus perfis
 - app/Http/Controllers/ProfileController: controller que gerencia os perfis e seus usuários
+- database/seeders/ProfileSeeders: Seeders dos Profiles
+- database/seeders/UserSeeders: Seeders dos Users
 - resources/js/Pages: telas Vue com Inertia (Index, Create, Edit, Show)
 - resources/js/Components: componentes como Toast, Pagination, etc.
 - testes/Feature/ProfileControllerTest: Testes do ProfileController.
