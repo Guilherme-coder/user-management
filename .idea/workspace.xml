@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6bae0177-b187-4a28-9662-6e8edbd6f9e3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/minha-aplicacao/app/Http/Controllers/ProfileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/minha-aplicacao/app/Http/Controllers/ProfileController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/minha-aplicacao/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/minha-aplicacao/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/minha-aplicacao/app/Http/Requests/StoreProfileRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/minha-aplicacao/app/Http/Requests/Profile/StoreProfileRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/minha-aplicacao/app/Http/Requests/SyncProfileUsersRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/minha-aplicacao/app/Http/Requests/Profile/SyncProfileUsersRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/minha-aplicacao/app/Http/Requests/UpdateProfileRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/minha-aplicacao/app/Http/Requests/Profile/UpdateProfileRequest.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README-novo.md" beforeDir="false" afterPath="$PROJECT_DIR$/README-novo.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,7 +209,7 @@
       <workItem from="1750903129283" duration="143000" />
       <workItem from="1750903289941" duration="50000" />
       <workItem from="1750903366527" duration="1869000" />
-      <workItem from="1750953533189" duration="12124000" />
+      <workItem from="1750953533189" duration="12549000" />
     </task>
     <servers />
   </component>

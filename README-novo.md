@@ -65,8 +65,10 @@ Permissão	Perfil Administrador
 - app/Models/User.php: modelo do usuário
 - app/Models/Profile.php: modelo do perfil
 - app/Http/Middleware/IsAdmin.php: middleware que protege rotas administrativas
-- UserController: gerencia usuários e seus perfis
-- ProfileController: gerencia perfis e seus usuários
+- app/Http/Requests/User: Form Request classes do User
+- app/Http/Requests/Profile: Form Request classes do Profile
+- app/Http/Controllers/UserController: controller que gerencia os usuários e seus perfis
+- app/Http/Controllers/ProfileController: controller que gerencia os perfis e seus usuários
 - resources/js/Pages: telas Vue com Inertia (Index, Create, Edit, Show)
 - resources/js/Components: componentes como Toast, Pagination, etc.
 
