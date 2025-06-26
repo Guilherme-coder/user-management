@@ -43,6 +43,11 @@ class User extends Authenticatable
         return $this->profiles()->where('profile', $profile)->exists();
     }
 
+    public function isAdmin(): bool
+    {
+        return $this->profiles()->where('profile', 'Administrador')->exists();
+    }
+
 
     /**
      * Get the attributes that should be cast.

@@ -5,9 +5,12 @@ import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
-import { Link } from '@inertiajs/vue3';
+import {Link, usePage} from '@inertiajs/vue3';
 
 const showingNavigationDropdown = ref(false);
+
+const page = usePage()
+const isAdmin = page.props.auth.isAdmin
 </script>
 
 <template>
@@ -71,12 +74,14 @@ const showingNavigationDropdown = ref(false);
                                     </template>
 
                                     <template #content>
-                                        <DropdownLink href="/users">
-                                            Users
-                                        </DropdownLink>
-                                        <DropdownLink href="/profiles">
-                                            Profiles
-                                        </DropdownLink>
+                                        <template v-if="isAdmin">
+                                            <ResponsiveNavLink href="/users">
+                                                Users
+                                            </ResponsiveNavLink>
+                                            <ResponsiveNavLink href="/profiles">
+                                                Profiles
+                                            </ResponsiveNavLink>
+                                        </template>
                                         <DropdownLink
                                             :href="route('logout')"
                                             method="post"
@@ -165,12 +170,14 @@ const showingNavigationDropdown = ref(false);
                         </div>
 
                         <div class="mt-3 space-y-1">
-                            <ResponsiveNavLink href="/users">
-                                Users
-                            </ResponsiveNavLink>
-                            <ResponsiveNavLink href="/profiles">
-                                Profiles
-                            </ResponsiveNavLink>
+                            <div v-if="isAdmin">
+                                <ResponsiveNavLink href="/users">
+                                    Users
+                                </ResponsiveNavLink>
+                                <ResponsiveNavLink href="/profiles">
+                                    Profiles
+                                </ResponsiveNavLink>
+                            </div>
                             <ResponsiveNavLink
                                 :href="route('logout')"
                                 method="post"
