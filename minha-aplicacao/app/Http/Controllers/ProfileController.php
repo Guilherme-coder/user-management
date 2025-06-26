@@ -12,6 +12,9 @@ use Inertia\Response;
 class ProfileController extends Controller
 {
 
+    /**
+     * Sync users in profile.
+     */
     public function syncUsers(Request $request, Profile $profile): RedirectResponse
     {
         $validated = $request->validate([
@@ -24,12 +27,18 @@ class ProfileController extends Controller
         return back()->with('success', 'Usuários atualizados com sucesso.');
     }
 
+    /**
+     * List all profiles.
+     */
     public function index(): Response
     {
         $profiles = Profile::all();
         return Inertia::render('Profiles/Index', ['profiles' => $profiles]);
     }
 
+    /**
+     * Show profile details.
+     */
     public function show(Profile $profile): Response
     {
         return Inertia::render('Profiles/Show', [
@@ -40,11 +49,17 @@ class ProfileController extends Controller
         ]);
     }
 
+    /**
+     * Display the profile create form.
+     */
     public function create(): Response
     {
         return Inertia::render('Profiles/Create');
     }
 
+    /**
+     * Store a profile.
+     */
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
@@ -57,21 +72,17 @@ class ProfileController extends Controller
     }
 
     /**
-     * Display the user's profile form.
+     * Display the profile edit form.
      */
     public function edit(Profile $profile): Response
     {
-        $users = User::all();
-
         return Inertia::render('Profiles/Edit', [
             'profile' => $profile,
-            'users' => $users,
-            'attachedUserIds' => $profile->users()->pluck('id')->toArray(),
         ]);
     }
 
     /**
-     * Update the user's profile information.
+     * Update the profile information.
      */
     public function update(Request $request, Profile $profile): RedirectResponse
     {
@@ -85,7 +96,7 @@ class ProfileController extends Controller
     }
 
     /**
-     * Delete the user's account.
+     * Delete profile.
      */
     public function destroy(Profile $profile): RedirectResponse
     {

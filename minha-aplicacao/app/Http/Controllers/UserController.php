@@ -12,6 +12,9 @@ use Inertia\Response;
 class UserController extends Controller
 {
 
+    /**
+     * Sync profiles in user.
+     */
     public function syncProfiles(Request $request, User $user): RedirectResponse
     {
         $validated = $request->validate([
@@ -24,6 +27,9 @@ class UserController extends Controller
         return back()->with('success', 'Perfis atualizados com sucesso.');
     }
 
+    /**
+     * List all users.
+     */
     public function index(): Response
     {
         return Inertia::render('Users/Index', [
@@ -31,6 +37,21 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * Show user details.
+     */
+    public function show(User $user): Response
+    {
+        return Inertia::render('Users/Show', [
+            'user' => $user,
+            'profiles' => Profile::select('id', 'profile')->get(),
+            'attachedProfileIds' => $user->profiles()->pluck('id')->toArray(),
+        ]);
+    }
+
+    /**
+     * Display the user create form.
+     */
     public function create(): Response
     {
         return Inertia::render('Users/Create', [
@@ -38,6 +59,9 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * Store a user.
+     */
     public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
@@ -59,6 +83,9 @@ class UserController extends Controller
         return redirect()->route('users.index')->with('success', 'Usuário criado com sucesso.');
     }
 
+    /**
+     * Display the user edit form.
+     */
     public function edit(User $user): Response
     {
         return Inertia::render('Users/Edit', [
@@ -66,6 +93,9 @@ class UserController extends Controller
         ]);
     }
 
+    /**
+     * Update a user.
+     */
     public function update(Request $request, User $user): RedirectResponse
     {
         $validated = $request->validate([
@@ -76,15 +106,6 @@ class UserController extends Controller
         $user->update($validated);
 
         return redirect()->route('users.index')->with('success', 'Usuário atualizado com sucesso.');
-    }
-
-    public function show(User $user): Response
-    {
-        return Inertia::render('Users/Show', [
-            'user' => $user,
-            'profiles' => Profile::select('id', 'profile')->get(),
-            'attachedProfileIds' => $user->profiles()->pluck('id')->toArray(),
-        ]);
     }
 
     /**

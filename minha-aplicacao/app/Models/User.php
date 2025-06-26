@@ -33,11 +33,17 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    /**
+     * Get the profiles in a user.
+     */
     public function profiles(): BelongsToMany
     {
         return $this->belongsToMany(Profile::class);
     }
 
+    /**
+     * Check if a user is admin.
+     */
     public function isAdmin(): bool
     {
         return $this->profiles()->where('profile', 'Administrador')->exists();

@@ -12,6 +12,9 @@ class Profile extends Model
 
     protected $fillable = ['profile'];
 
+    /**
+     * Get the users in a profile.
+     */
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class);
