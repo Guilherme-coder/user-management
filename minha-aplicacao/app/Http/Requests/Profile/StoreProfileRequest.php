@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Profile;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SyncProfileUsersRequest extends FormRequest
+class StoreProfileRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +22,7 @@ class SyncProfileUsersRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'users' => ['array'],
-            'users.*' => ['integer', 'exists:users,id'],
+            'profile' => ['required', 'string', 'max:255'],
         ];
     }
 }

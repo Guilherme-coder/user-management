@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Http\Requests\User\StoreUserRequest;
+use App\Http\Requests\User\SyncUserProfilesRequest;
+use App\Http\Requests\User\UpdateUserRequest;
 use App\Models\Profile;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -15,14 +17,9 @@ class UserController extends Controller
     /**
      * Sync profiles in user.
      */
-    public function syncProfiles(Request $request, User $user): RedirectResponse
+    public function syncProfiles(SyncUserProfilesRequest  $request, User $user): RedirectResponse
     {
-        $validated = $request->validate([
-            'profiles' => ['array'],
-            'profiles.*' => ['integer', 'exists:profiles,id'],
-        ]);
-
-        $user->profiles()->sync($validated['profiles'] ?? []);
+        $user->profiles()->sync($request->validated('profiles') ?? []);
 
         return back()->with('success', 'Perfis atualizados com sucesso.');
     }
@@ -62,15 +59,9 @@ class UserController extends Controller
     /**
      * Store a user.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(StoreUserRequest $request): RedirectResponse
     {
-        $validated = $request->validate([
-            'name' => ['required'],
-            'email' => ['required', 'email', 'unique:users,email'],
-            'password' => ['required', 'min:6'],
-            'profiles' => ['array'],
-            'profiles.*' => ['integer', 'exists:profiles,id'],
-        ]);
+        $validated = $request->validated();
 
         $user = User::create([
             'name' => $validated['name'],
@@ -79,7 +70,7 @@ class UserController extends Controller
         ]);
 
         $user->profiles()->sync($validated['profiles'] ?: [
-            Profile::where('profile', 'Usuario')->value('id')
+            Profile::where('profile', 'Usuario')->value('id'),
         ]);
 
         return redirect()->route('users.index')->with('success', 'Usuário criado com sucesso.');
@@ -98,14 +89,9 @@ class UserController extends Controller
     /**
      * Update a user.
      */
-    public function update(Request $request, User $user): RedirectResponse
+    public function update(UpdateUserRequest $request, User $user): RedirectResponse
     {
-        $validated = $request->validate([
-            'name' => ['required', 'string'],
-            'email' => ['required', 'email'],
-        ]);
-
-        $user->update($validated);
+        $user->update($request->validated());
 
         return redirect()->route('users.index')->with('success', 'Usuário atualizado com sucesso.');
     }

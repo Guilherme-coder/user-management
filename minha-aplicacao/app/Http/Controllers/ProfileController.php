@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreProfileRequest;
-use App\Http\Requests\SyncProfileUsersRequest;
-use App\Http\Requests\UpdateProfileRequest;
+use App\Http\Requests\Profile\StoreProfileRequest;
+use App\Http\Requests\Profile\SyncProfileUsersRequest;
+use App\Http\Requests\Profile\UpdateProfileRequest;
 use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
