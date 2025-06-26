@@ -88,6 +88,9 @@ composer install
 # Acessar container
 ./vendor/bin/sail shell
 
+# Baixar dependências npm
+npm install
+
 # Copiar o arquivo de ambiente e gerar chave
 cp .env.example .env
 php artisan key:generate
@@ -101,5 +104,17 @@ php artisan migrate
 
 # Rodar seeders
 php artisan db:seed
+```
+
+### Executar projeto:
+
+```bash
+# Rodar vite
+npm run dev
+# obs: servidor ficara disponível no localhost:80, mas pode ser alterado no .env -> APP_URL=http://localhost
+
+
+# Buildar 
+npm run build
 ```
 
