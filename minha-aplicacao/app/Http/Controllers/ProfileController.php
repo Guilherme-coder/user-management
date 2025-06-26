@@ -11,10 +11,33 @@ use Inertia\Response;
 
 class ProfileController extends Controller
 {
+
+    public function syncUsers(Request $request, Profile $profile)
+    {
+        $validated = $request->validate([
+            'users' => ['array'],
+            'users.*' => ['integer', 'exists:users,id'],
+        ]);
+
+        $profile->users()->sync($validated['users'] ?? []);
+
+        return back()->with('success', 'Usuários atualizados com sucesso.');
+    }
+
     public function index(): Response
     {
         $profiles = Profile::all();
         return Inertia::render('Profiles/Index', ['profiles' => $profiles]);
+    }
+
+    public function show(Profile $profile)
+    {
+        return Inertia::render('Profiles/Show', [
+            'profile' => $profile,
+            'usersWithProfile' => $profile->users()->select('id', 'name', 'email')->get(),
+            'allUsers' => User::select('id', 'name', 'email')->get(),
+            'attachedUserIds' => $profile->users()->pluck('id')->toArray(),
+        ]);
     }
 
     public function create(): Response
