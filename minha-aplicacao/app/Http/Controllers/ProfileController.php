@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreProfileRequest;
+use App\Http\Requests\SyncProfileUsersRequest;
+use App\Http\Requests\UpdateProfileRequest;
 use App\Models\Profile;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -15,14 +17,9 @@ class ProfileController extends Controller
     /**
      * Sync users in profile.
      */
-    public function syncUsers(Request $request, Profile $profile): RedirectResponse
+    public function syncUsers(SyncProfileUsersRequest $request, Profile $profile): RedirectResponse
     {
-        $validated = $request->validate([
-            'users' => ['array'],
-            'users.*' => ['integer', 'exists:users,id'],
-        ]);
-
-        $profile->users()->sync($validated['users'] ?? []);
+        $profile->users()->sync($request->validated('users') ?? []);
 
         return back()->with('success', 'Usuários atualizados com sucesso.');
     }
@@ -60,13 +57,9 @@ class ProfileController extends Controller
     /**
      * Store a profile.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(StoreProfileRequest $request): RedirectResponse
     {
-        $validated = $request->validate([
-            'profile' => ['required', 'string', 'max:255'],
-        ]);
-
-        Profile::create($validated);
+        Profile::create($request->validated());
 
         return redirect()->route('profiles.index')->with('success', 'Perfil criado com sucesso.');
     }
@@ -84,13 +77,9 @@ class ProfileController extends Controller
     /**
      * Update the profile information.
      */
-    public function update(Request $request, Profile $profile): RedirectResponse
+    public function update(UpdateProfileRequest $request, Profile $profile): RedirectResponse
     {
-        $validated = $request->validate([
-            'profile' => ['required', 'string', 'max:255'],
-        ]);
-
-        $profile->update($validated);
+        $profile->update($request->validated());
 
         return redirect()->route('profiles.index')->with('success', 'Perfil atualizado com sucesso.');
     }

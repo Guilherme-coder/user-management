@@ -33,7 +33,7 @@ const submit = () => {
                         class="mt-1 block w-full border rounded-md px-3 py-2 shadow-sm focus:outline-none focus:ring focus:border-blue-300"
                         :class="{ 'border-red-500': form.errors.perfil }"
                     />
-                    <span v-if="form.errors.perfil" class="text-red-500 text-sm">{{ form.errors.perfil }}</span>
+                    <span v-if="form.errors.profile" class="text-red-500 text-sm">{{ form.errors.profile }}</span>
                 </div>
 
                 <div class="flex justify-between items-center mt-6">

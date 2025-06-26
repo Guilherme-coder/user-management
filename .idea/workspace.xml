@@ -5,8 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6bae0177-b187-4a28-9662-6e8edbd6f9e3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/minha-aplicacao/database/seeders/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/minha-aplicacao/database/seeders/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/minha-aplicacao/database/seeders/ProfileSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/minha-aplicacao/database/seeders/ProfileSeeder.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minha-aplicacao/app/Http/Controllers/ProfileController.php" beforeDir="false" afterPath="$PROJECT_DIR$/minha-aplicacao/app/Http/Controllers/ProfileController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minha-aplicacao/resources/js/Pages/Profiles/Create.vue" beforeDir="false" afterPath="$PROJECT_DIR$/minha-aplicacao/resources/js/Pages/Profiles/Create.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/minha-aplicacao/resources/js/Pages/Profiles/Edit.vue" beforeDir="false" afterPath="$PROJECT_DIR$/minha-aplicacao/resources/js/Pages/Profiles/Edit.vue" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -210,7 +212,7 @@
       <workItem from="1750903129283" duration="143000" />
       <workItem from="1750903289941" duration="50000" />
       <workItem from="1750903366527" duration="1869000" />
-      <workItem from="1750953533189" duration="10145000" />
+      <workItem from="1750953533189" duration="11404000" />
     </task>
     <servers />
   </component>
@@ -222,7 +224,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/minha-aplicacao/app/Http/Controllers/ProfileController.php</url>
-          <line>102</line>
+          <line>91</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
