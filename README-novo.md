@@ -71,6 +71,8 @@ Permissão	Perfil Administrador
 - app/Http/Controllers/ProfileController: controller que gerencia os perfis e seus usuários
 - resources/js/Pages: telas Vue com Inertia (Index, Create, Edit, Show)
 - resources/js/Components: componentes como Toast, Pagination, etc.
+- testes/Feature/ProfileControllerTest: Testes do ProfileController.
+- testes/Feature/UserControllerTest: Testes do UserController.
 
 ### Instalação:
 
@@ -118,5 +120,12 @@ npm run dev
 
 # Buildar 
 npm run build
+```
+
+### Rodar testes:
+
+```bash
+# Rodar vite
+php artisan test
 ```
 
