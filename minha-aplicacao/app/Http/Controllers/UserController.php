@@ -78,7 +78,9 @@ class UserController extends Controller
             'password' => bcrypt($validated['password']),
         ]);
 
-        $user->profiles()->sync($validated['profiles'] ?? []);
+        $user->profiles()->sync($validated['profiles'] ?: [
+            Profile::where('profile', 'Usuario')->value('id')
+        ]);
 
         return redirect()->route('users.index')->with('success', 'Usuário criado com sucesso.');
     }
