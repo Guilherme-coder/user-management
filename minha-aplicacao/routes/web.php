@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
 use App\Http\Middleware\IsAdmin;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -18,6 +19,11 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::middleware(['auth', IsAdmin::class])->group(function () {
+    Route::resource('users', UserController::class)->only(['index', 'create', 'store', 'edit', 'update', 'show']);
+    Route::post('users/{user}/profiles', [UserController::class, 'syncProfiles'])->name('users.syncProfiles');
+});
 
 Route::middleware(['auth', IsAdmin::class])->group(function () {
     Route::resource('profiles', ProfileController::class);
